@@ -10,22 +10,27 @@ document.getElementById('btn-Withdraw-submit').addEventListener('click', functio
     const totalWithdraw = document.getElementById('total-withdraw');
     const totalWithdrawString = totalWithdraw.innerText;
     const remainingTotalWithdraw = parseFloat(totalWithdrawString);
+   
     // console.log(remainingTotalWithdraw);
-
-    const sumTotalWithdraw = remainingTotalWithdraw + withdrawMoney;
-    totalWithdraw.innerText = sumTotalWithdraw;
+   
+   
     // deducting withdraw money from availableBalance.........................................
     const previousCurrentBalance = document.getElementById('available-balance');
     const previousCurrentBalanceString = previousCurrentBalance.innerText;
     const currentBalance = parseFloat(previousCurrentBalanceString);
-
-    const balanceAfterWithdraw = currentBalance - sumTotalWithdraw;
-    previousCurrentBalance.innerText = balanceAfterWithdraw;
-
-
-    if (currentBalance <= 0) {
+    if (currentBalance < withdrawMoney ) {
         alert('you cannot withdraw money!!!!due to Insufficient Balance');
+        withdrawInput.value = '';
+        return;
 
     }
+    
+const sumTotalWithdraw = remainingTotalWithdraw + withdrawMoney;
+    totalWithdraw.innerText = sumTotalWithdraw;
+    const balanceAfterWithdraw = currentBalance - withdrawMoney;
+    previousCurrentBalance.innerText = balanceAfterWithdraw;
+
+ 
+    
     withdrawInput.value = '';
 })
